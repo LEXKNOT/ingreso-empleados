@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Registro de Empleados</title>
+    <title>Registro de Empleados</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,7 +23,7 @@
             margin-top: 10px;
             color: #555;
         }
-        input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
+        input[type="text"], input[type="email"], input[type="tel"], select {
             width: 100%;
             padding: 8px;
             margin-top: 5px;
@@ -46,7 +46,7 @@
 </head>
 <body>
     <h1>Registro de Empleados</h1>
-    <form action="https://formspree.io/f/xwplnpll" method="POST">
+    <form id="employeeForm">
         <label for="nombres">Nombres:</label>
         <input type="text" id="nombres" name="nombres" required>
 
@@ -65,8 +65,16 @@
         <label for="lugarExpedicionDocumento">Lugar de Expedición del Documento:</label>
         <input type="text" id="lugarExpedicionDocumento" name="lugarExpedicionDocumento" required>
 
-        <label for="EstadoCivil">Estado Civil:</label>
-        <input type="text" id="EstadoCivil" name="EstadoCivil" required>
+        <!-- Nuevo campo: Estado Civil -->
+        <label for="estadoCivil">Estado Civil:</label>
+        <select id="estadoCivil" name="estadoCivil" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Soltero/a">Soltero/a</option>
+            <option value="Casado/a">Casado/a</option>
+            <option value="Viudo/a">Viudo/a</option>
+            <option value="Divorciado/a">Divorciado/a</option>
+            <option value="Unión libre">Unión libre</option>
+        </select>
 
         <label for="telefonosContacto">Teléfonos de Contacto:</label>
         <input type="tel" id="telefonosContacto" name="telefonosContacto" required>
@@ -112,6 +120,7 @@
             const tipoDocumento = document.getElementById('tipoDocumento').value;
             const numeroDocumento = document.getElementById('numeroDocumento').value;
             const lugarExpedicionDocumento = document.getElementById('lugarExpedicionDocumento').value;
+            const estadoCivil = document.getElementById('estadoCivil').value; // Nuevo campo
             const telefonosContacto = document.getElementById('telefonosContacto').value;
             const direccionExacta = document.getElementById('direccionExacta').value;
             const nombreBarrio = document.getElementById('nombreBarrio').value;
@@ -124,7 +133,7 @@
             const celularContactoEmergencia = document.getElementById('celularContactoEmergencia').value;
 
             // Crear una fila de datos en formato CSV
-            const csvData = `Nombres,Primer Apellido,Segundo Apellido,Tipo de Documento,Número de Documento,Lugar de Expedición del Documento,Teléfonos de Contacto,Dirección Exacta,Nombre del Barrio,Correo Electrónico,Cargo al que Aplica,EPS,Fondo de Pensiones,Contacto en Caso de Emergencia,Parentesco del Contacto en Caso de Emergencia,Número de Celular del Contacto en Caso de Emergencia\n"${nombres}","${primerApellido}","${segundoApellido}","${tipoDocumento}","${numeroDocumento}","${lugarExpedicionDocumento}","${telefonosContacto}","${direccionExacta}","${nombreBarrio}","${correoElectronico}","${cargoAplica}","${eps}","${fondoPensiones}","${contactoEmergencia}","${parentescoContactoEmergencia}","${celularContactoEmergencia}"`;
+            const csvData = `Nombres,Primer Apellido,Segundo Apellido,Tipo de Documento,Número de Documento,Lugar de Expedición del Documento,Estado Civil,Teléfonos de Contacto,Dirección Exacta,Nombre del Barrio,Correo Electrónico,Cargo al que Aplica,EPS,Fondo de Pensiones,Contacto en Caso de Emergencia,Parentesco del Contacto en Caso de Emergencia,Número de Celular del Contacto en Caso de Emergencia\n"${nombres}","${primerApellido}","${segundoApellido}","${tipoDocumento}","${numeroDocumento}","${lugarExpedicionDocumento}","${estadoCivil}","${telefonosContacto}","${direccionExacta}","${nombreBarrio}","${correoElectronico}","${cargoAplica}","${eps}","${fondoPensiones}","${contactoEmergencia}","${parentescoContactoEmergencia}","${celularContactoEmergencia}"`;
 
             // Crear un enlace de descarga
             const blob = new Blob([csvData], { type: 'text/csv' });
