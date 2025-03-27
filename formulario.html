@@ -46,7 +46,8 @@
 </head>
 <body>
     <h1>Registro de Empleados</h1>
-    <form id="employeeForm">
+    <!-- Endpoint de Formspree actualizado -->
+    <form action="https://formspree.io/f/xwplnpll" method="POST">
         <label for="nombres">Nombres:</label>
         <input type="text" id="nombres" name="nombres" required>
 
@@ -108,44 +109,5 @@
 
         <button type="submit">Enviar Datos</button>
     </form>
-
-    <script>
-        document.getElementById('employeeForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Evitar el envío del formulario
-
-            // Obtener los valores del formulario
-            const nombres = document.getElementById('nombres').value;
-            const primerApellido = document.getElementById('primerApellido').value;
-            const segundoApellido = document.getElementById('segundoApellido').value;
-            const tipoDocumento = document.getElementById('tipoDocumento').value;
-            const numeroDocumento = document.getElementById('numeroDocumento').value;
-            const lugarExpedicionDocumento = document.getElementById('lugarExpedicionDocumento').value;
-            const estadoCivil = document.getElementById('estadoCivil').value; // Nuevo campo
-            const telefonosContacto = document.getElementById('telefonosContacto').value;
-            const direccionExacta = document.getElementById('direccionExacta').value;
-            const nombreBarrio = document.getElementById('nombreBarrio').value;
-            const correoElectronico = document.getElementById('correoElectronico').value;
-            const cargoAplica = document.getElementById('cargoAplica').value;
-            const eps = document.getElementById('eps').value;
-            const fondoPensiones = document.getElementById('fondoPensiones').value;
-            const contactoEmergencia = document.getElementById('contactoEmergencia').value;
-            const parentescoContactoEmergencia = document.getElementById('parentescoContactoEmergencia').value;
-            const celularContactoEmergencia = document.getElementById('celularContactoEmergencia').value;
-
-            // Crear una fila de datos en formato CSV
-            const csvData = `Nombres,Primer Apellido,Segundo Apellido,Tipo de Documento,Número de Documento,Lugar de Expedición del Documento,Estado Civil,Teléfonos de Contacto,Dirección Exacta,Nombre del Barrio,Correo Electrónico,Cargo al que Aplica,EPS,Fondo de Pensiones,Contacto en Caso de Emergencia,Parentesco del Contacto en Caso de Emergencia,Número de Celular del Contacto en Caso de Emergencia\n"${nombres}","${primerApellido}","${segundoApellido}","${tipoDocumento}","${numeroDocumento}","${lugarExpedicionDocumento}","${estadoCivil}","${telefonosContacto}","${direccionExacta}","${nombreBarrio}","${correoElectronico}","${cargoAplica}","${eps}","${fondoPensiones}","${contactoEmergencia}","${parentescoContactoEmergencia}","${celularContactoEmergencia}"`;
-
-            // Crear un enlace de descarga
-            const blob = new Blob([csvData], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'empleados.csv'; // Nombre del archivo
-            a.click();
-
-            // Limpiar el formulario después de la descarga
-            document.getElementById('employeeForm').reset();
-        });
-    </script>
 </body>
 </html>
