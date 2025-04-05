@@ -1,146 +1,142 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Empleados</title>
     <style>
         body {
-            background-color: white; /* Ensure the iframe has a white background */
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            max-width: 600px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
         }
-
-        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-transform: uppercase; /* Asegura que el texto se muestre en mayúsculas */
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
-    <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Registro de Empleados</title>
-<style>
-body {
-font-family: Arial, sans-serif;
-margin: 20px;
-padding: 20px;
-max-width: 600px;
-background-color: #f9f9f9;
-border: 1px solid #ccc;
-border-radius: 10px;
-}
-h1 {
-text-align: center;
-color: #333;
-}
-label {
-display: block;
-margin-top: 10px;
-color: #555;
-}
-input[type="text"], input[type="email"], input[type="tel"], select {
-width: 100%;
-padding: 8px;
-margin-top: 5px;
-border: 1px solid #ddd;
-border-radius: 5px;
-}
-button {
-margin-top: 20px;
-padding: 10px 15px;
-background-color: #28a745;
-color: white;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-}
-button:hover {
-background-color: #218838;
-}
-</style>
-</head>
-<body>
-<h1>Registro de Empleados</h1>
-<!-- Endpoint de Formspree actualizado -->
-<form action="https://formspree.io/f/xwplnpll" method="POST">
-<label for="nombres">Nombres:</label>
-<input type="text" id="nombres" name="nombres" required>
+    <h1>Registro de Empleados</h1>
+    <!-- Endpoint de Formspree actualizado -->
+    <form action="https://formspree.io/f/xwplnpll" method="POST" onsubmit="convertirAMayusculas(event)">
+        <label for="nombres">Nombres:</label>
+        <input type="text" id="nombres" name="nombres" required>
 
-<label for="primerApellido">Primer Apellido:</label>
-<input type="text" id="primerApellido" name="primerApellido" required>
+        <label for="primerApellido">Primer Apellido:</label>
+        <input type="text" id="primerApellido" name="primerApellido" required>
 
-<label for="segundoApellido">Segundo Apellido:</label>
-<input type="text" id="segundoApellido" name="segundoApellido" required>
+        <label for="segundoApellido">Segundo Apellido:</label>
+        <input type="text" id="segundoApellido" name="segundoApellido" required>
 
-<label for="tipoDocumento">Tipo de Documento:</label>
-<input type="text" id="tipoDocumento" name="tipoDocumento" required>
+        <label for="tipoDocumento">Tipo de Documento:</label>
+        <input type="text" id="tipoDocumento" name="tipoDocumento" required>
 
-<label for="numeroDocumento">Número de Documento:</label>
-<input type="text" id="numeroDocumento" name="numeroDocumento" required>
+        <label for="numeroDocumento">Número de Documento:</label>
+        <input type="text" id="numeroDocumento" name="numeroDocumento" required>
 
-<label for="lugarExpedicionDocumento">Lugar de Expedición del Documento:</label>
-<input type="text" id="lugarExpedicionDocumento" name="lugarExpedicionDocumento" required>
+        <label for="lugarExpedicionDocumento">Lugar de Expedición del Documento:</label>
+        <input type="text" id="lugarExpedicionDocumento" name="lugarExpedicionDocumento" required>
 
-<!-- Nuevo campo: Estado Civil -->
-<label for="estadoCivil">Estado Civil:</label>
-<select id="estadoCivil" name="estadoCivil" required>
-<option value="">Selecciona una opción</option>
-<option value="Soltero/a">Soltero/a</option>
-<option value="Casado/a">Casado/a</option>
-<option value="Viudo/a">Viudo/a</option>
-<option value="Divorciado/a">Divorciado/a</option>
-<option value="Unión libre">Unión libre</option>
-</select>
+        <!-- Nuevo campo: Estado Civil -->
+        <label for="estadoCivil">Estado Civil:</label>
+        <select id="estadoCivil" name="estadoCivil" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Soltero/a">Soltero/a</option>
+            <option value="Casado/a">Casado/a</option>
+            <option value="Viudo/a">Viudo/a</option>
+            <option value="Divorciado/a">Divorciado/a</option>
+            <option value="Unión libre">Unión libre</option>
+        </select>
 
-<label for="telefonosContacto">Teléfonos de Contacto:</label>
-<input type="tel" id="telefonosContacto" name="telefonosContacto" required>
+        <label for="telefonosContacto">Teléfonos de Contacto:</label>
+        <input type="tel" id="telefonosContacto" name="telefonosContacto" required>
 
-<label for="direccionExacta">Dirección Exacta:</label>
-<input type="text" id="direccionExacta" name="direccionExacta" required>
+        <label for="direccionExacta">Dirección Exacta:</label>
+        <input type="text" id="direccionExacta" name="direccionExacta" required>
 
-<label for="nombreBarrio">Nombre del Barrio:</label>
-<input type="text" id="nombreBarrio" name="nombreBarrio" required>
+        <label for="nombreBarrio">Nombre del Barrio:</label>
+        <input type="text" id="nombreBarrio" name="nombreBarrio" required>
 
-<label for="correoElectronico">Correo Electrónico:</label>
-<input type="email" id="correoElectronico" name="correoElectronico" required>
+        <label for="correoElectronico">Correo Electrónico:</label>
+        <input type="email" id="correoElectronico" name="correoElectronico" required>
 
-<label for="cargoAplica">Cargo al que Aplica:</label>
-<input type="text" id="cargoAplica" name="cargoAplica" required>
+        <label for="cargoAplica">Cargo al que Aplica:</label>
+        <input type="text" id="cargoAplica" name="cargoAplica" required>
 
-<label for="eps">EPS:</label>
-<input type="text" id="eps" name="eps" required>
+        <label for="eps">EPS:</label>
+        <input type="text" id="eps" name="eps" required>
 
-<label for="fondoPensiones">Fondo de Pensiones:</label>
-<input type="text" id="fondoPensiones" name="fondoPensiones" required>
+        <label for="fondoPensiones">Fondo de Pensiones:</label>
+        <input type="text" id="fondoPensiones" name="fondoPensiones" required>
 
-<label for="contactoEmergencia">Nombre de Contacto en Caso de Emergencia:</label>
-<input type="text" id="contactoEmergencia" name="contactoEmergencia" required>
+        <label for="contactoEmergencia">Contacto en Caso de Emergencia:</label>
+        <input type="text" id="contactoEmergencia" name="contactoEmergencia" required>
 
-<label for="parentescoContactoEmergencia">Parentesco del Contacto en Caso de Emergencia:</label>
-<input type="text" id="parentescoContactoEmergencia" name="parentescoContactoEmergencia" required>
+        <label for="parentescoContactoEmergencia">Parentesco del Contacto en Caso de Emergencia:</label>
+        <input type="text" id="parentescoContactoEmergencia" name="parentescoContactoEmergencia" required>
 
-<label for="celularContactoEmergencia">Número de Celular del Contacto en Caso de Emergencia:</label>
-<input type="tel" id="celularContactoEmergencia" name="celularContactoEmergencia" required>
+        <label for="celularContactoEmergencia">Número de Celular del Contacto en Caso de Emergencia:</label>
+        <input type="tel" id="celularContactoEmergencia" name="celularContactoEmergencia" required>
 
-<!-- Nuevos campos agregados -->
-<label for="tallaCamisa">Talla de Camisa:</label>
-<input type="text" id="tallaCamisa" name="tallaCamisa" placeholder="Ejemplo: M, L, XL" required>
+        <!-- Nuevos campos agregados -->
+        <label for="tallaCamisa">Talla de Camisa:</label>
+        <input type="text" id="tallaCamisa" name="tallaCamisa" placeholder="Ejemplo: M, L, XL" required>
 
-<label for="tallaPantalon">Talla de Pantalón:</label>
-<input type="text" id="tallaPantalon" name="tallaPantalon" placeholder="Ejemplo: 32, 34, 36" required>
+        <label for="tallaPantalon">Talla de Pantalón:</label>
+        <input type="text" id="tallaPantalon" name="tallaPantalon" placeholder="Ejemplo: 32, 34, 36" required>
 
-<label for="tallaBotas">Talla de Botas:</label>
-<input type="text" id="tallaBotas" name="tallaBotas" placeholder="Ejemplo: 40, 42, 44" required>
+        <label for="tallaBotas">Talla de Botas:</label>
+        <input type="text" id="tallaBotas" name="tallaBotas" placeholder="Ejemplo: 40, 42, 44" required>
 
-<button type="submit">Enviar Datos</button>
-</form>
-</body>
-</html>
-
-
+        <button type="submit">Enviar Datos</button>
+    </form>
 
     <script>
-        
+        // Función para convertir todos los valores de los campos a mayúsculas antes de enviar el formulario
+        function convertirAMayusculas(event) {
+            event.preventDefault(); // Previene el envío del formulario para procesar los datos
+
+            // Obtener todos los campos de entrada
+            const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+            
+            // Convertir el valor de cada campo a mayúsculas
+            inputs.forEach(input => {
+                input.value = input.value.toUpperCase();
+            });
+
+            // Enviar el formulario después de la conversión
+            event.target.submit();
+        }
     </script>
 </body>
 </html>
