@@ -29,7 +29,7 @@
             margin-top: 5px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            text-transform: uppercase; /* Asegura que el texto se muestre en mayúsculas */
+            text-transform: uppercase; /* Muestra el texto en mayúsculas mientras se escribe */
         }
         button {
             margin-top: 20px;
@@ -48,7 +48,7 @@
 <body>
     <h1>Registro de Empleados</h1>
     <!-- Endpoint de Formspree actualizado -->
-    <form action="https://formspree.io/f/xwplnpll" method="POST" onsubmit="convertirAMayusculas(event)">
+    <form id="formularioEmpleado" action="https://formspree.io/f/xwplnpll" method="POST">
         <label for="nombres">Nombres:</label>
         <input type="text" id="nombres" name="nombres" required>
 
@@ -71,11 +71,11 @@
         <label for="estadoCivil">Estado Civil:</label>
         <select id="estadoCivil" name="estadoCivil" required>
             <option value="">Selecciona una opción</option>
-            <option value="Soltero/a">Soltero/a</option>
-            <option value="Casado/a">Casado/a</option>
-            <option value="Viudo/a">Viudo/a</option>
-            <option value="Divorciado/a">Divorciado/a</option>
-            <option value="Unión libre">Unión libre</option>
+            <option value="SOLTERO/A">Soltero/a</option>
+            <option value="CASADO/A">Casado/a</option>
+            <option value="VIUDO/A">Viudo/a</option>
+            <option value="DIVORCIADO/A">Divorciado/a</option>
+            <option value="UNIÓN LIBRE">Unión libre</option>
         </select>
 
         <label for="telefonosContacto">Teléfonos de Contacto:</label>
@@ -122,21 +122,24 @@
     </form>
 
     <script>
-        // Función para convertir todos los valores de los campos a mayúsculas antes de enviar el formulario
-        function convertirAMayusculas(event) {
-            event.preventDefault(); // Previene el envío del formulario para procesar los datos
+        // Obtener el formulario
+        const formulario = document.getElementById('formularioEmpleado');
+
+        // Agregar un listener para el evento 'submit'
+        formulario.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevenir el envío del formulario
 
             // Obtener todos los campos de entrada
-            const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
-            
+            const inputs = formulario.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
+
             // Convertir el valor de cada campo a mayúsculas
             inputs.forEach(input => {
                 input.value = input.value.toUpperCase();
             });
 
             // Enviar el formulario después de la conversión
-            event.target.submit();
-        }
+            formulario.submit();
+        });
     </script>
 </body>
 </html>
