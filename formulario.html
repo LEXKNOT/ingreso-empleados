@@ -46,7 +46,7 @@
     </style>
 </head>
 <body>
-    <h1>Registro de Empleados</h1>
+    <h1>Registro de Empleados Doing Ingenieria</h1>
     <!-- Endpoint de Formspree actualizado -->
     <form id="formularioEmpleado" action="https://formspree.io/f/xwplnpll" method="POST">
         <label for="nombres">Nombres:</label>
@@ -129,15 +129,20 @@
         formulario.addEventListener('submit', function (event) {
             event.preventDefault(); // Prevenir el envío del formulario
 
-            // Obtener todos los campos de entrada
+            console.log("Convirtiendo valores a mayúsculas...");
+
+            // Obtener todos los campos de entrada relevantes
             const inputs = formulario.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"]');
 
             // Convertir el valor de cada campo a mayúsculas
             inputs.forEach(input => {
+                console.log(`Valor original: ${input.value}`);
                 input.value = input.value.toUpperCase();
+                console.log(`Valor convertido: ${input.value}`);
             });
 
             // Enviar el formulario después de la conversión
+            console.log("Enviando formulario...");
             formulario.submit();
         });
     </script>
